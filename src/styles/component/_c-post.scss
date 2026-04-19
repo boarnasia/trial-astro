@@ -26,11 +26,6 @@
 		margin-bottom: 1em;
 		padding: 1em 0;
 		text-align: center;
-		line-height: 1;
-
-		h1 {
-			margin: 0 0 0.5em 0;
-		}
 	}
 
 	&__date {
@@ -39,6 +34,8 @@
 	}
 
 	&__updated {
+		display: inline-block;
+		margin-left: 0.25rem;
 		font-style: italic;
 	}
 }

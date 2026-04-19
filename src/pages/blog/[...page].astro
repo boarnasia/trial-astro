@@ -1,22 +1,34 @@
 ---
 import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import BlogSearch from '../../components/BlogSearch';
 import Footer from '../../components/Footer';
 import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header';
 import Pagination from '../../components/Pagination';
+import Typography from '../../components/Typography';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
-export async function getStaticPaths({ paginate }) {
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   const posts = (await getCollection('blog')).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   );
   return paginate(posts, { pageSize: 10 });
-}
+};
 
-const { page } = Astro.props;
+const { page } = Astro.props as {
+  page: {
+    data: CollectionEntry<'blog'>[];
+    currentPage: number;
+    lastPage: number;
+    url: {
+      prev?: string;
+      next?: string;
+    };
+  };
+};
 
 const allPosts = await getCollection('blog');
 const allPostsMeta = allPosts
@@ -38,6 +50,11 @@ const allPostsMeta = allPosts
     <Header currentPath={Astro.url.pathname} />
     <main class="l-main l-main--blog-index">
       <section>
+        <Typography as="p" variant="eyebrow">Blog</Typography>
+        <Typography as="h1" variant="display">記事一覧</Typography>
+        <Typography as="p" variant="lead">
+          MDX で管理された記事を、検索とページングで快適に読めるようにしています。
+        </Typography>
         <BlogSearch posts={allPostsMeta} client:load />
         <ul class="c-post-list">
           {

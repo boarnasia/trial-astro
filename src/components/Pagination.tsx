@@ -7,15 +7,17 @@ interface Props {
   nextUrl: string | undefined;
 }
 
+const getPageUrl = (page: number) => (page === 1 ? '/blog/' : `/blog/${page}/`);
+
 export default function Pagination({ currentPage, lastPage, prevUrl, nextUrl }: Props) {
+  if (lastPage <= 1) {
+    return null;
+  }
+
   const pages = Array.from({ length: lastPage }, (_, i) => i + 1);
 
   const visiblePages = pages.filter((page) => {
-    return (
-      page === 1 ||
-      page === lastPage ||
-      Math.abs(page - currentPage) <= 2
-    );
+    return page === 1 || page === lastPage || Math.abs(page - currentPage) <= 2;
   });
 
   const pageItems: (number | 'ellipsis')[] = [];
@@ -27,11 +29,11 @@ export default function Pagination({ currentPage, lastPage, prevUrl, nextUrl }: 
   });
 
   return (
-    <nav className="c-pagination" aria-label="Blog pagination">
+    <nav className="c-pagination" aria-label="ブログ一覧ページのページ移動">
       <ul className="c-pagination__list">
         <li className="c-pagination__item">
           {prevUrl ? (
-            <a className="c-pagination__link" href={prevUrl} aria-label="Previous page">
+            <a className="c-pagination__link" href={prevUrl} aria-label="前のページへ" rel="prev">
               &laquo;
             </a>
           ) : (
@@ -51,18 +53,11 @@ export default function Pagination({ currentPage, lastPage, prevUrl, nextUrl }: 
           ) : (
             <li key={item} className="c-pagination__item">
               {item === currentPage ? (
-                <span
-                  className="c-pagination__link c-pagination__link--active"
-                  aria-current="page"
-                >
+                <span className="c-pagination__link c-pagination__link--active" aria-current="page">
                   {item}
                 </span>
               ) : (
-                <a
-                  className="c-pagination__link"
-                  href={item === 1 ? '/blog/' : `/blog/${item}/`}
-                  aria-label={`Page ${item}`}
-                >
+                <a className="c-pagination__link" href={getPageUrl(item)} aria-label={`${item}ページ目へ`}>
                   {item}
                 </a>
               )}
@@ -72,7 +67,7 @@ export default function Pagination({ currentPage, lastPage, prevUrl, nextUrl }: 
 
         <li className="c-pagination__item">
           {nextUrl ? (
-            <a className="c-pagination__link" href={nextUrl} aria-label="Next page">
+            <a className="c-pagination__link" href={nextUrl} aria-label="次のページへ" rel="next">
               &raquo;
             </a>
           ) : (

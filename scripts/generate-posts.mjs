@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * generate-posts.mjs
- * Generates randomized markdown blog posts for the Astro content collection.
+ * Generates randomized MDX blog posts for the Astro content collection.
  *
  * Usage:
  *   node scripts/generate-posts.mjs
@@ -168,8 +168,8 @@ function findNextIndex(outputDir, prefix) {
   if (!existsSync(outputDir)) return 1;
 
   const files = readdirSync(outputDir);
-  // Match files like <prefix>-NNN.md
-  const re = new RegExp(`^${escapeRegex(prefix)}-(\\d+)\\.md$`);
+  // Match files like <prefix>-NNN.mdx
+  const re = new RegExp(`^${escapeRegex(prefix)}-(\\d+)\\.mdx$`);
   let max = 0;
   for (const f of files) {
     const m = f.match(re);
@@ -212,7 +212,7 @@ const created = [];
 
 for (let i = 0; i < count; i++) {
   const idx = startIndex + i;
-  const filename = `${prefix}-${formatIndex(idx, padWidth)}.md`;
+  const filename = `${prefix}-${formatIndex(idx, padWidth)}.mdx`;
   const filepath = join(OUTPUT_DIR, filename);
 
   const title = generateTitle();

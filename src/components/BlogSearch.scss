@@ -1,6 +1,70 @@
 .c-blog-search {
   margin-bottom: 2rem;
 
+  &__trigger,
+  &__close {
+    appearance: none;
+    border: 0;
+    cursor: pointer;
+  }
+
+  &__trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    padding: 0.75rem 1.1rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    box-shadow: var(--box-shadow);
+  }
+
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    z-index: 40;
+  }
+
+  &__dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: min(720px, calc(100vw - 2rem));
+    max-height: 85vh;
+    overflow: auto;
+    padding: 1.25rem;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 24px 80px rgba(15, 23, 42, 0.24);
+    transform: translate(-50%, -50%);
+    z-index: 50;
+  }
+
+  &__header {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    background: rgb(var(--gray-light));
+    color: rgb(var(--gray-dark));
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+
   &__label {
     display: block;
     margin-bottom: 0.4rem;
@@ -15,7 +79,7 @@
     box-sizing: border-box;
     padding: 0.65rem 1rem;
     border: 1px solid rgb(var(--gray-light));
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 1rem;
     color: rgb(var(--black));
     background-color: #fff;
@@ -89,9 +153,11 @@
     line-height: 1.5;
   }
 
-  &__date {
-    font-size: 0.8rem;
+  &__date,
+  &__empty {
+    font-size: 0.85rem;
     color: rgb(var(--gray));
     margin-top: 0.25rem;
   }
 }
+
