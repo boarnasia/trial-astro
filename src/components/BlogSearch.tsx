@@ -1,5 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import { useId, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import Typography from './Typography';
 import './BlogSearch.scss';
 
@@ -16,8 +16,10 @@ interface Props {
 
 export default function BlogSearch({ posts }: Props) {
   const [query, setQuery] = useState('');
+  const [activeIndex, setActiveIndex] = useState(-1);
   const inputId = useId();
   const descriptionId = useId();
+  const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
 
   const normalizedQuery = query.trim().toLowerCase();
   const filtered = normalizedQuery
@@ -30,6 +32,33 @@ export default function BlogSearch({ posts }: Props) {
     : [];
 
   const showResults = normalizedQuery.length > 0;
+
+  useEffect(() => {
+    if (activeIndex >= 0 && itemRefs.current[activeIndex]) {
+      itemRefs.current[activeIndex]?.scrollIntoView({ block: 'nearest' });
+    }
+  }, [activeIndex]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+    setActiveIndex(-1);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const isDown = e.key === 'ArrowDown' || (e.key === 'n' && e.ctrlKey);
+    const isUp = e.key === 'ArrowUp' || (e.key === 'p' && e.ctrlKey);
+
+    if (isDown && filtered.length > 0) {
+      e.preventDefault();
+      setActiveIndex((prev) => Math.min(prev + 1, filtered.length - 1));
+    } else if (isUp && filtered.length > 0) {
+      e.preventDefault();
+      setActiveIndex((prev) => Math.max(prev - 1, 0));
+    } else if (e.key === 'Enter' && activeIndex >= 0 && filtered[activeIndex]) {
+      e.preventDefault();
+      window.location.href = `/blog/${filtered[activeIndex].id}/`;
+    }
+  };
 
   return (
     <div className="c-blog-search">
@@ -68,7 +97,8 @@ export default function BlogSearch({ posts }: Props) {
               className="c-blog-search__input"
               type="text"
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
               placeholder="タイトルや説明で絞り込む…"
               aria-label="ブログ記事を検索"
               autoFocus
@@ -80,9 +110,17 @@ export default function BlogSearch({ posts }: Props) {
                   <>
                     <p className="c-blog-search__count">{filtered.length}件ヒット</p>
                     <ul className="c-blog-search__list">
-                      {filtered.map((post) => (
-                        <li key={post.id} className="c-blog-search__item">
-                          <a className="c-blog-search__link" href={`/blog/${post.id}/`}>
+                      {filtered.map((post, index) => (
+                        <li
+                          key={post.id}
+                          className="c-blog-search__item"
+                          ref={(el) => { itemRefs.current[index] = el; }}
+                        >
+                          <a
+                            className="c-blog-search__link"
+                            href={`/blog/${post.id}/`}
+                            data-active={activeIndex === index}
+                          >
                             <span className="c-blog-search__title">{post.title}</span>
                             <span className="c-blog-search__description">{post.description}</span>
                             <span className="c-blog-search__date">
