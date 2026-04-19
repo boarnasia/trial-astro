@@ -1,0 +1,19 @@
+.l-main {
+	width: 720px;
+	max-width: calc(100% - 2em);
+	margin: auto;
+	padding: 3em 1em;
+
+	@media (max-width: 720px) {
+		padding: 1em;
+	}
+}
+
+.l-main--wide {
+	width: calc(100% - 2em);
+	max-width: 100%;
+}
+
+.l-main--blog-index {
+	width: 960px;
+}

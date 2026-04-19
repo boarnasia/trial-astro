@@ -1,0 +1,22 @@
+.c-footer {
+	padding: 2em 1em 6em 1em;
+	background: linear-gradient(var(--gray-gradient)) no-repeat;
+	color: rgb(var(--gray));
+	text-align: center;
+
+	&__social {
+		display: flex;
+		justify-content: center;
+		gap: 1em;
+		margin-top: 1em;
+	}
+
+	&__social-link {
+		text-decoration: none;
+		color: rgb(var(--gray));
+
+		&:hover {
+			color: rgb(var(--gray-dark));
+		}
+	}
+}
