@@ -1,32 +1,23 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import Typography from '../components/Typography';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import Layout from '@/layouts/Layout.astro';
+import LayoutContainer from '@/components/Layouts/LayoutContainer';
+import Typography from '@/components/Typography';
+import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header currentPath={Astro.url.pathname} />
-		<main class="l-main">
-			<Typography as="p" variant="eyebrow">Trial Astro</Typography>
-			<Typography as="h1" variant="display">MDX 中心の軽量ブログ</Typography>
-			<Typography as="p" variant="lead">
-				Astro と React をベースに、検索しやすく保守しやすい構成へ整えたブログです。
-			</Typography>
-			<Typography as="p" variant="body">
-				記事本文は MDX に統一し、一覧では検索ダイアログとページングで目的の記事へすばやく移動できます。
-			</Typography>
-			<ul>
-				<li><a href="/blog/">ブログ一覧を見る</a></li>
-				<li><a href="/about/">このサイトについて</a></li>
-			</ul>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<LayoutContainer size="sm">
+		<Typography as="p" variant="eyebrow">Trial Astro</Typography>
+		<Typography as="h1" variant="display">MDX 中心の軽量ブログ</Typography>
+		<Typography as="p" variant="lead">
+			Astro と React をベースに、検索しやすく保守しやすい構成へ整えたブログです。
+		</Typography>
+		<Typography as="p" variant="body">
+			記事本文は MDX に統一し、一覧では検索ダイアログとページングで目的の記事へすばやく移動できます。
+		</Typography>
+		<ul>
+			<li><a href="/blog/">ブログ一覧を見る</a></li>
+			<li><a href="/about/">このサイトについて</a></li>
+		</ul>
+	</LayoutContainer>
+</Layout>

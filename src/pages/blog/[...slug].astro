@@ -1,20 +1,53 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
+import FormattedDate from '@/components/FormattedDate.astro';
+import HeroBlock from '@/components/HeroBlock';
+import Typography from '@/components/Typography';
+import Layout from '@/layouts/Layout.astro';
+import LayoutContainer from '@/components/Layouts/LayoutContainer';
+import { LayoutPage } from '@/components/Layouts/Blog/LayoutPage';
+import { LayoutHero } from '@/components/Layouts/Blog/LayoutHero';
+import { LayoutHeader } from '@/components/Layouts/Blog/LayoutHeader';
+import { LayoutBody } from '@/components/Layouts/Blog/LayoutBody';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.id },
-		props: post,
-	}));
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
+  }));
 }
 type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
 const { Content } = await render(post);
+const { title, description, pubDate, updatedDate, heroImage } = post.data;
 ---
 
-<BlogPost {...post.data}>
-	<Content />
-</BlogPost>
+<Layout title={title} description={description}>
+  <LayoutPage as="article" variant={heroImage ? 'with-hero' : 'without-hero'}>
+    {heroImage && (
+      <LayoutHero>
+        <HeroBlock src={heroImage} alt="" width={1020} height={510} />
+      </LayoutHero>
+    )}
+    <LayoutHeader>
+      <Typography as="p" variant="muted">
+        <FormattedDate date={pubDate} />
+        {updatedDate && (
+          <Fragment>
+            {' ・ Last updated on '}
+            <FormattedDate date={updatedDate} />
+          </Fragment>
+        )}
+      </Typography>
+      <Typography as="h1" variant="display">{title}</Typography>
+      <Typography as="p" variant="lead">{description}</Typography>
+    </LayoutHeader>
+    <LayoutBody>
+      <LayoutContainer size="sm">
+        <Content />
+      </LayoutContainer>
+    </LayoutBody>
+  </LayoutPage>
+</Layout>

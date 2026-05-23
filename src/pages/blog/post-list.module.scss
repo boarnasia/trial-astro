@@ -1,0 +1,81 @@
+.postList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.postListItem {
+  width: calc(50% - 1rem);
+
+  * {
+    text-decoration: none;
+    transition: 0.2s ease;
+  }
+}
+
+.postListItemFeatured {
+  width: 100%;
+  margin-bottom: 1rem;
+  text-align: center;
+
+  img {
+    width: 100%;
+  }
+
+  .postCardTitle {
+    font-size: 2.369rem;
+  }
+}
+
+.postListLink {
+  display: block;
+
+  &:hover {
+    .postCardTitle,
+    .postCardDate {
+      color: rgb(var(--accent));
+    }
+
+    img {
+      box-shadow: var(--box-shadow);
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .postList {
+    gap: 0.5em;
+  }
+
+  .postListItem {
+    width: 100%;
+    text-align: center;
+  }
+
+  .postListItemFeatured {
+    margin-bottom: 0;
+
+    .postCardTitle {
+      font-size: 1.563em;
+    }
+  }
+}
+
+.postCardImage {
+  margin-bottom: 0.5rem;
+  border-radius: 12px;
+}
+
+.postCardTitle {
+  margin: 0;
+  color: rgb(var(--black));
+  line-height: 1;
+}
+
+.postCardDate {
+  margin: 0;
+  color: rgb(var(--gray));
+}

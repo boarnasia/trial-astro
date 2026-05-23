@@ -1,5 +1,9 @@
+:root, body {
+  scrollbar-gutter: auto;
+}
+
 body {
-	font-family: var(--font-atkinson);
+	font-family: var(--font-family-primary);
 	margin: 0;
 	padding: 0;
 	text-align: left;
@@ -10,6 +14,7 @@ body {
 	color: rgb(var(--gray-dark));
 	font-size: 20px;
 	line-height: 1.7;
+	min-height: 100dvh;
 }
 
 h1,
@@ -72,6 +77,9 @@ code {
 }
 
 pre {
+	max-width:100%;
+	overflow-x: auto;
+	word-wrap:normal;
 	padding: 1.5em;
 	border-radius: 8px;
 

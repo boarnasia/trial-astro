@@ -26,3 +26,6 @@ pnpm-debug.log*
 *storybook.log
 storybook-static
 .playwright-mcp
+
+# personal Claude Code instructions (not shared)
+CLAUDE.local.md

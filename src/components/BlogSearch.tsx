@@ -1,7 +1,7 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import { useEffect, useId, useRef, useState } from 'react';
 import Typography from './Typography';
-import './BlogSearch.scss';
+import styles from './BlogSearch.module.scss';
 
 interface PostMeta {
   id: string;
@@ -61,25 +61,29 @@ export default function BlogSearch({ posts }: Props) {
   };
 
   return (
-    <div className="c-blog-search">
+    <div className={styles.blogSearch}>
       <Dialog.Root>
         <Dialog.Trigger asChild>
-          <button type="button" className="c-blog-search__trigger">
+          <button type="button" className={styles.trigger}>
             記事を検索
           </button>
         </Dialog.Trigger>
 
         <Dialog.Portal>
-          <Dialog.Overlay className="c-blog-search__overlay" />
-          <Dialog.Content className="c-blog-search__dialog" aria-describedby={descriptionId}>
-            <div className="c-blog-search__header">
+          <Dialog.Overlay className={styles.overlay} />
+          <Dialog.Content className={styles.dialog} aria-describedby={descriptionId}>
+            <div className={styles.header}>
               <Dialog.Title asChild>
                 <Typography as="h2" variant="title">
                   記事を検索
                 </Typography>
               </Dialog.Title>
               <Dialog.Close asChild>
-                <button type="button" className="c-blog-search__close" aria-label="検索ダイアログを閉じる">
+                <button
+                  type="button"
+                  className={styles.close}
+                  aria-label="検索ダイアログを閉じる"
+                >
                   ×
                 </button>
               </Dialog.Close>
@@ -89,12 +93,12 @@ export default function BlogSearch({ posts }: Props) {
               タイトルや説明文から、読みたい記事をすばやく探せます。
             </Typography>
 
-            <label className="c-blog-search__label" htmlFor={inputId}>
+            <label className={styles.label} htmlFor={inputId}>
               キーワード
             </label>
             <input
               id={inputId}
-              className="c-blog-search__input"
+              className={styles.input}
               type="text"
               value={query}
               onChange={handleChange}
@@ -104,26 +108,28 @@ export default function BlogSearch({ posts }: Props) {
               autoFocus
             />
 
-            <div className="c-blog-search__results" aria-live="polite">
+            <div className={styles.results} aria-live="polite">
               {showResults ? (
                 filtered.length > 0 ? (
                   <>
-                    <p className="c-blog-search__count">{filtered.length}件ヒット</p>
-                    <ul className="c-blog-search__list">
+                    <p className={styles.count}>{filtered.length}件ヒット</p>
+                    <ul className={styles.list}>
                       {filtered.map((post, index) => (
                         <li
                           key={post.id}
-                          className="c-blog-search__item"
-                          ref={(el) => { itemRefs.current[index] = el; }}
+                          className={styles.item}
+                          ref={(el) => {
+                            itemRefs.current[index] = el;
+                          }}
                         >
                           <a
-                            className="c-blog-search__link"
+                            className={styles.link}
                             href={`/blog/${post.id}/`}
                             data-active={activeIndex === index}
                           >
-                            <span className="c-blog-search__title">{post.title}</span>
-                            <span className="c-blog-search__description">{post.description}</span>
-                            <span className="c-blog-search__date">
+                            <span className={styles.title}>{post.title}</span>
+                            <span className={styles.description}>{post.description}</span>
+                            <span className={styles.date}>
                               {new Date(post.pubDate).toLocaleDateString('ja-JP', {
                                 year: 'numeric',
                                 month: 'long',
@@ -136,10 +142,10 @@ export default function BlogSearch({ posts }: Props) {
                     </ul>
                   </>
                 ) : (
-                  <p className="c-blog-search__empty">該当する記事はありません。</p>
+                  <p className={styles.empty}>該当する記事はありません。</p>
                 )
               ) : (
-                <p className="c-blog-search__empty">キーワードを入力すると候補が表示されます。</p>
+                <p className={styles.empty}>キーワードを入力すると候補が表示されます。</p>
               )}
             </div>
           </Dialog.Content>

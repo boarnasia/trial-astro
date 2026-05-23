@@ -43,26 +43,73 @@ function parseArgs(argv) {
 // Content data pools
 // ---------------------------------------------------------------------------
 const TOPICS = [
-  'JavaScript', 'TypeScript', 'Rust', 'Go', 'Python', 'WebAssembly',
-  'CSS Grid', 'Flexbox', 'Accessibility', 'Performance', 'Security',
-  'GraphQL', 'REST APIs', 'Microservices', 'Docker', 'Kubernetes',
-  'React', 'Vue', 'Svelte', 'Astro', 'Next.js', 'Remix',
-  'Testing', 'CI/CD', 'DevOps', 'Machine Learning', 'Edge Computing',
-  'Progressive Web Apps', 'Web Components', 'Design Systems',
-  'Database Optimization', 'Caching Strategies', 'Serverless Functions',
+  'JavaScript',
+  'TypeScript',
+  'Rust',
+  'Go',
+  'Python',
+  'WebAssembly',
+  'CSS Grid',
+  'Flexbox',
+  'Accessibility',
+  'Performance',
+  'Security',
+  'GraphQL',
+  'REST APIs',
+  'Microservices',
+  'Docker',
+  'Kubernetes',
+  'React',
+  'Vue',
+  'Svelte',
+  'Astro',
+  'Next.js',
+  'Remix',
+  'Testing',
+  'CI/CD',
+  'DevOps',
+  'Machine Learning',
+  'Edge Computing',
+  'Progressive Web Apps',
+  'Web Components',
+  'Design Systems',
+  'Database Optimization',
+  'Caching Strategies',
+  'Serverless Functions',
 ];
 
 const ADJECTIVES = [
-  'Practical', 'In-Depth', 'Essential', 'Modern', 'Advanced',
-  'Beginner-Friendly', 'Comprehensive', 'Concise', 'Real-World',
-  'Production-Ready', 'Battle-Tested', 'Effective', 'Elegant',
-  'Scalable', 'Maintainable', 'Opinionated', 'Hands-On',
+  'Practical',
+  'In-Depth',
+  'Essential',
+  'Modern',
+  'Advanced',
+  'Beginner-Friendly',
+  'Comprehensive',
+  'Concise',
+  'Real-World',
+  'Production-Ready',
+  'Battle-Tested',
+  'Effective',
+  'Elegant',
+  'Scalable',
+  'Maintainable',
+  'Opinionated',
+  'Hands-On',
 ];
 
 const VERBS = [
-  'Understanding', 'Mastering', 'Exploring', 'Building', 'Optimizing',
-  'Demystifying', 'Deep Dive into', 'Getting Started with',
-  'Best Practices for', 'A Guide to', 'Rethinking',
+  'Understanding',
+  'Mastering',
+  'Exploring',
+  'Building',
+  'Optimizing',
+  'Demystifying',
+  'Deep Dive into',
+  'Getting Started with',
+  'Best Practices for',
+  'A Guide to',
+  'Rethinking',
 ];
 
 const DESC_OPENERS = [
@@ -88,8 +135,18 @@ const DESC_CLOSERS = [
 ];
 
 const MONTH_NAMES = [
-  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
 ];
 
 // Body paragraph templates — {topic} is replaced with the chosen topic.
@@ -230,9 +287,7 @@ for (let i = 0; i < count; i++) {
 console.log(`\nGenerated ${created.length} post(s) in ${OUTPUT_DIR}\n`);
 const col1 = Math.max(...created.map((c) => c.filename.length));
 const col2 = Math.max(...created.map((c) => c.pubDate.length));
-console.log(
-  `${'File'.padEnd(col1)}  ${'Date'.padEnd(col2)}  Title`,
-);
+console.log(`${'File'.padEnd(col1)}  ${'Date'.padEnd(col2)}  Title`);
 console.log('-'.repeat(col1 + col2 + 40));
 for (const { filename, title, pubDate } of created) {
   console.log(`${filename.padEnd(col1)}  ${pubDate.padEnd(col2)}  ${title}`);

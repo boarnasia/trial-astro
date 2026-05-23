@@ -1,0 +1,39 @@
+.typography {
+  margin: 0;
+}
+
+.variant-eyebrow {
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.variant-display {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.variant-title {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.variant-lead {
+  color: rgb(var(--gray-dark));
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.variant-body {
+  line-height: 1.7;
+}
+
+.variant-muted {
+  color: rgb(var(--gray));
+  font-size: 0.95rem;
+  line-height: 1.6;
+}

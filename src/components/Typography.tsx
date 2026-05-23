@@ -1,4 +1,5 @@
 import type { ElementType, HTMLAttributes, ReactNode } from 'react';
+import styles from './Typography.module.scss';
 
 type TypographyVariant = 'display' | 'title' | 'lead' | 'body' | 'muted' | 'eyebrow';
 
@@ -15,7 +16,7 @@ export default function Typography({
   children,
   ...props
 }: Props) {
-  const classes = ['c-typography', `c-typography--${variant}`, className]
+  const classes = [styles.typography, styles[`variant-${variant}`], className]
     .filter(Boolean)
     .join(' ');
 

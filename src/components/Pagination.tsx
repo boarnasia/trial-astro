@@ -57,12 +57,16 @@ export default function Pagination({ currentPage, lastPage, prevUrl, nextUrl }: 
                   {item}
                 </span>
               ) : (
-                <a className="c-pagination__link" href={getPageUrl(item)} aria-label={`${item}ページ目へ`}>
+                <a
+                  className="c-pagination__link"
+                  href={getPageUrl(item)}
+                  aria-label={`${item}ページ目へ`}
+                >
                   {item}
                 </a>
               )}
             </li>
-          )
+          ),
         )}
 
         <li className="c-pagination__item">

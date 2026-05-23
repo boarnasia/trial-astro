@@ -1,0 +1,36 @@
+---
+import BaseHead from '@/components/BaseHead.astro';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import { LayoutBody } from '@/components/Layouts/LayoutBody';
+import { LayoutFooter } from '@/components/Layouts/LayoutFooter';
+import { LayoutHeader } from '@/components/Layouts/LayoutHeader';
+import { LayoutMain } from '@/components/Layouts/LayoutMain';
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<LayoutBody>
+		<slot name="first-element-of-body" />
+		<LayoutHeader>
+			<Header currentPath={Astro.url.pathname} />
+		</LayoutHeader>
+		<LayoutMain>
+			<slot />
+		</LayoutMain>
+		<LayoutFooter>
+			<Footer />
+		</LayoutFooter>
+		<slot name="last-element-of-body" />
+	</LayoutBody>
+</html>

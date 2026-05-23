@@ -1,0 +1,3 @@
+- src/components/Layouts/LayoutBody.tsx に移行する
+- src/layouts/Layout.astro で LayoutBody を使わせるようにしたい
+- Layout が grid area name style になったので、Footer, Header の対応が必要

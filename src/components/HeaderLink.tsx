@@ -1,3 +1,5 @@
+import styles from './Header.module.scss';
+
 type Props = {
   href: string;
   currentPath?: string;
@@ -11,7 +13,7 @@ export default function HeaderLink({ href, currentPath = '', children }: Props) 
   return (
     <a
       href={href}
-      className={['c-header__link', isActive ? 'c-header__link--active' : ''].filter(Boolean).join(' ')}
+      className={[styles.link, isActive && styles.linkActive].filter(Boolean).join(' ')}
     >
       {children}
     </a>

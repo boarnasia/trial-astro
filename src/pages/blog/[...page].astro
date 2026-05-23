@@ -2,14 +2,17 @@
 import { Image } from 'astro:assets';
 import type { GetStaticPaths } from 'astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
-import BaseHead from '../../components/BaseHead.astro';
-import BlogSearch from '../../components/BlogSearch';
-import Footer from '../../components/Footer';
-import FormattedDate from '../../components/FormattedDate.astro';
-import Header from '../../components/Header';
-import Pagination from '../../components/Pagination';
-import Typography from '../../components/Typography';
+import BlogSearch from '@/components/BlogSearch';
+import FormattedDate from '@/components/FormattedDate.astro';
+import Pagination from '@/components/Pagination';
+import Typography from '@/components/Typography';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import Layout from '@/layouts/Layout.astro';
+import LayoutContainer from '@/components/Layouts/LayoutContainer';
+import { LayoutPage } from '@/components/Layouts/Blog/LayoutPage';
+import { LayoutHeader } from '@/components/Layouts/Blog/LayoutHeader';
+import { LayoutBody } from '@/components/Layouts/Blog/LayoutBody';
+import styles from './post-list.module.scss';
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   const posts = (await getCollection('blog')).sort(
@@ -41,37 +44,34 @@ const allPostsMeta = allPosts
   }));
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Header currentPath={Astro.url.pathname} />
-    <main class="l-main l-main--blog-index">
-      <section>
-        <Typography as="p" variant="eyebrow">Blog</Typography>
-        <Typography as="h1" variant="display">記事一覧</Typography>
-        <Typography as="p" variant="lead">
-          MDX で管理された記事を、検索とページングで快適に読めるようにしています。
-        </Typography>
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <LayoutPage variant="without-hero">
+    <LayoutHeader>
+      <Typography as="p" variant="eyebrow">Blog</Typography>
+      <Typography as="h1" variant="display">記事一覧</Typography>
+      <Typography as="p" variant="lead">
+        MDX で管理された記事を、検索とページングで快適に読めるようにしています。
+      </Typography>
+    </LayoutHeader>
+    <LayoutBody>
+      <LayoutContainer size="md">
         <BlogSearch posts={allPostsMeta} client:load />
-        <ul class="c-post-list">
+        <ul class={styles.postList}>
           {
             page.data.map((post, index) => (
-              <li class={`c-post-list__item${index === 0 && page.currentPage === 1 ? ' c-post-list__item--featured' : ''}`}>
-                <a class="c-post-list__link" href={`/blog/${post.id}/`}>
+              <li class={[styles.postListItem, index === 0 && page.currentPage === 1 && styles.postListItemFeatured].filter(Boolean).join(' ')}>
+                <a class={styles.postListLink} href={`/blog/${post.id}/`}>
                   {post.data.heroImage && (
                     <Image
-                      class="c-post-card__image"
+                      class={styles.postCardImage}
                       width={720}
                       height={360}
                       src={post.data.heroImage}
                       alt=""
                     />
                   )}
-                  <h4 class="c-post-card__title">{post.data.title}</h4>
-                  <p class="c-post-card__date">
+                  <h4 class={styles.postCardTitle}>{post.data.title}</h4>
+                  <p class={styles.postCardDate}>
                     <FormattedDate date={post.data.pubDate} />
                   </p>
                 </a>
@@ -85,8 +85,7 @@ const allPostsMeta = allPosts
           prevUrl={page.url.prev}
           nextUrl={page.url.next}
         />
-      </section>
-    </main>
-    <Footer />
-  </body>
-</html>
+      </LayoutContainer>
+    </LayoutBody>
+  </LayoutPage>
+</Layout>
