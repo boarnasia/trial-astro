@@ -1,0 +1,48 @@
+.header {
+	margin: 0;
+	padding: 0 1em;
+	background: white;
+	box-shadow: 0 2px 8px rgba(var(--black), 5%);
+}
+
+.nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.brand {
+	margin: 0;
+	font-size: 1em;
+}
+
+.brandLink {
+	text-decoration: none;
+}
+
+.navLinks {
+	display: flex;
+}
+
+.link {
+	padding: 1em 0.5em;
+	color: rgb(var(--black));
+	border-bottom: 4px solid transparent;
+	text-decoration: none;
+}
+
+.linkActive {
+	border-bottom-color: var(--accent);
+}
+
+.social {
+	display: flex;
+
+	@media (max-width: 720px) {
+		display: none;
+	}
+}
+
+.socialLink {
+	display: flex;
+}

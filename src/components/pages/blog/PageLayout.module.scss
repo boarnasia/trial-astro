@@ -1,0 +1,23 @@
+.pageLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+}
+
+.variant-with-hero {
+  grid-template-rows: auto 6em auto 3em auto;
+  grid-template-areas:
+    "hero"
+    "......"
+    "header"
+    "......"
+    "body";
+}
+
+.variant-without-hero {
+  grid-template-rows: auto 3em auto;
+  grid-template-areas:
+    "header"
+    "......"
+    "body";
+}

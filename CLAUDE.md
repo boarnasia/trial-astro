@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Stack
 
-Astro 6 + React 19, SCSS (BEM + FLOCSS), Radix UI for headless primitives, MDX for content collections, Storybook + Vitest for component dev/testing. TypeScript strict mode. Path alias `@/*` → `src/*`.
+Astro 6 + React 19, SCSS (CSS Modules + Foundation/Utility は BEM + FLOCSS), Radix UI for headless primitives, MDX for content collections, Storybook + Vitest for component dev/testing. TypeScript strict mode. Path alias `@/*` → `src/*`.
 
 ## Critical: dev servers are human-managed
 
@@ -16,7 +16,7 @@ Treat the following as the source of truth — don't restate their contents here
 
 - @docs/ai-guidelines.md — minimal rules for agents (stack, styling, change-size preference)
 - @docs/onboarding.md — workflow, human/AI role split, dev URLs
-- @docs/feontend-design.md — component / styling design rules (note: filename is `feontend-design.md`, not `frontend-`)
+- @docs/frontend-design.md — component / styling design rules
 
 ## Conventions
 

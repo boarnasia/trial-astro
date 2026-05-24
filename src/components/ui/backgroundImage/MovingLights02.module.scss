@@ -1,0 +1,18 @@
+// Source: plans/0524-06-wide-background-in-main/movinglight02.md (originally https://codepen.io/thanks2music/pen/VmJjaG)
+
+.movingLights02 {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+// prefers-reduced-motion: SMIL <animate> / <animateTransform> cannot be reliably paused via CSS alone.
+// Proper reduced-motion support for this component is best-effort and deferred to a separate task.

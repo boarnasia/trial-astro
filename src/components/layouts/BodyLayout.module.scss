@@ -1,0 +1,13 @@
+.bodyLayout {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 3em 1fr 5em auto;
+    grid-template-areas:
+        "header"
+        "......"
+        "main"
+        "......"
+        "footer";
+    width: 100%;
+    min-height: 100dvh;
+}

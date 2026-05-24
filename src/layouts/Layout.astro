@@ -1,11 +1,11 @@
 ---
-import BaseHead from '@/components/BaseHead.astro';
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
-import { LayoutBody } from '@/components/Layouts/LayoutBody';
-import { LayoutFooter } from '@/components/Layouts/LayoutFooter';
-import { LayoutHeader } from '@/components/Layouts/LayoutHeader';
-import { LayoutMain } from '@/components/Layouts/LayoutMain';
+import BaseHead from '@/components/ui/BaseHead.astro';
+import Footer from '@/components/ui/Footer';
+import Header from '@/components/ui/Header';
+import { BodyLayout } from '@/components/layouts/BodyLayout';
+import { FooterLayout } from '@/components/layouts/FooterLayout';
+import { HeaderLayout } from '@/components/layouts/HeaderLayout';
+import { MainLayout } from '@/components/layouts/MainLayout';
 
 interface Props {
 	title: string;
@@ -20,17 +20,17 @@ const { title, description } = Astro.props;
 	<head>
 		<BaseHead title={title} description={description} />
 	</head>
-	<LayoutBody>
+	<BodyLayout>
 		<slot name="first-element-of-body" />
-		<LayoutHeader>
+		<HeaderLayout>
 			<Header currentPath={Astro.url.pathname} />
-		</LayoutHeader>
-		<LayoutMain>
+		</HeaderLayout>
+		<MainLayout>
 			<slot />
-		</LayoutMain>
-		<LayoutFooter>
+		</MainLayout>
+		<FooterLayout>
 			<Footer />
-		</LayoutFooter>
+		</FooterLayout>
 		<slot name="last-element-of-body" />
-	</LayoutBody>
+	</BodyLayout>
 </html>

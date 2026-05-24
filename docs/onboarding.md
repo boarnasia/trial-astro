@@ -6,11 +6,11 @@
 
 - フレームワーク: Astro
 - UI: React
-- スタイル: SCSS + BEM + FLOCSS
+- スタイル: SCSS（CSS Modules 中心 / Foundation・Utility のみ BEM + FLOCSS）
 - Headless UI: Radix UI
 - コンポーネント開発: Storybook
 
-主な設計・実装ルールは [feontend-design.md](./feontend-design.md) を参照してください。
+主な設計・実装ルールは [frontend-design.md](./frontend-design.md) を参照してください。
 
 ## 主要ディレクトリ
 

@@ -1,0 +1,15 @@
+// Source: plans/0524-06-wide-background-in-main/movinglight01.md (originally https://codepen.io/smpnjn/pen/yLPdEPQ)
+
+.movingLights01 {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}

@@ -1,14 +1,14 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
-import FormattedDate from '@/components/FormattedDate.astro';
-import HeroBlock from '@/components/HeroBlock';
-import Typography from '@/components/Typography';
+import FormattedDate from '@/components/ui/FormattedDate.astro';
+import HeroBlock from '@/components/ui/HeroBlock';
+import Typography from '@/components/ui/Typography';
 import Layout from '@/layouts/Layout.astro';
-import LayoutContainer from '@/components/Layouts/LayoutContainer';
-import { LayoutPage } from '@/components/Layouts/Blog/LayoutPage';
-import { LayoutHero } from '@/components/Layouts/Blog/LayoutHero';
-import { LayoutHeader } from '@/components/Layouts/Blog/LayoutHeader';
-import { LayoutBody } from '@/components/Layouts/Blog/LayoutBody';
+import ContainerLayout from '@/components/layouts/ContainerLayout';
+import { PageLayout } from '@/components/pages/blog/PageLayout';
+import { HeroLayout } from '@/components/pages/blog/HeroLayout';
+import { HeaderLayout } from '@/components/pages/blog/HeaderLayout';
+import { BodyLayout } from '@/components/pages/blog/BodyLayout';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -25,13 +25,13 @@ const { title, description, pubDate, updatedDate, heroImage } = post.data;
 ---
 
 <Layout title={title} description={description}>
-  <LayoutPage as="article" variant={heroImage ? 'with-hero' : 'without-hero'}>
+  <PageLayout as="article" variant={heroImage ? 'with-hero' : 'without-hero'}>
     {heroImage && (
-      <LayoutHero>
+      <HeroLayout>
         <HeroBlock src={heroImage} alt="" width={1020} height={510} />
-      </LayoutHero>
+      </HeroLayout>
     )}
-    <LayoutHeader>
+    <HeaderLayout>
       <Typography as="p" variant="muted">
         <FormattedDate date={pubDate} />
         {updatedDate && (
@@ -43,11 +43,11 @@ const { title, description, pubDate, updatedDate, heroImage } = post.data;
       </Typography>
       <Typography as="h1" variant="display">{title}</Typography>
       <Typography as="p" variant="lead">{description}</Typography>
-    </LayoutHeader>
-    <LayoutBody>
-      <LayoutContainer size="sm">
+    </HeaderLayout>
+    <BodyLayout>
+      <ContainerLayout size="sm">
         <Content />
-      </LayoutContainer>
-    </LayoutBody>
-  </LayoutPage>
+      </ContainerLayout>
+    </BodyLayout>
+  </PageLayout>
 </Layout>

@@ -1,12 +1,17 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import LayoutContainer from '@/components/Layouts/LayoutContainer';
-import Typography from '@/components/Typography';
+import ContainerLayout from '@/components/layouts/ContainerLayout';
+import Typography from '@/components/ui/Typography';
+import MainBackgroundFull from '@/components/layouts/MainBackgroundFull';
+import MovingLights02 from '@/components/ui/backgroundImage/MovingLights02';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
 ---
 
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-	<LayoutContainer size="sm">
+	<MainBackgroundFull slot="first-element-of-body">
+		<MovingLights02 />
+	</MainBackgroundFull>
+	<ContainerLayout size="sm">
 		<Typography as="p" variant="eyebrow">Trial Astro</Typography>
 		<Typography as="h1" variant="display">MDX 中心の軽量ブログ</Typography>
 		<Typography as="p" variant="lead">
@@ -19,5 +24,5 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
 			<li><a href="/blog/">ブログ一覧を見る</a></li>
 			<li><a href="/about/">このサイトについて</a></li>
 		</ul>
-	</LayoutContainer>
+	</ContainerLayout>
 </Layout>

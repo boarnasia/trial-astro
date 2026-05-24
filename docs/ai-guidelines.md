@@ -4,9 +4,9 @@ Minimal repository context for AI agents.
 
 - This is an Astro blog project.
 - UI components use React.
-- Styling uses SCSS with BEM and FLOCSS.
+- Styling uses SCSS with CSS Modules (*.module.scss) for components. Foundation and utility layers keep BEM + FLOCSS.
 - Headless UI uses Radix UI.
-- Design rules are defined in [feontend-design.md](./feontend-design.md).
+- Design rules are defined in [frontend-design.md](./frontend-design.md).
 - Blog content is in src/content/blog/.
 - Helper scripts are in scripts/.
 - Ongoing work context is in tasks/.
