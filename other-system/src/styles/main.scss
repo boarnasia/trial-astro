@@ -1,0 +1,20 @@
+// FLOCSS layers — import order matters (cascade from low to high specificity)
+
+// Foundation: variables, reset, base element styles
+@use 'foundation/variables';
+@use 'foundation/reset';
+@use 'foundation/base';
+// foundation/mixins is consumed via `@use 'foundation/mixins' as m;` from individual files
+
+// Layout: large structural blocks
+@use 'layout';
+
+// Object > Component: reusable UI pieces
+@use 'object/component/counter';
+
+// Object > Project: page-specific composites
+@use 'object/project/hero';
+@use 'object/project/ticks';
+
+// Object > Utility: single-purpose helpers (allowed to use !important)
+@use 'object/utility/u-sr-only';

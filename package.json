@@ -15,7 +15,8 @@
     "generate:posts": "node scripts/generate-posts.mjs",
     "format": "biome format --write .",
     "lint": "biome lint .",
-    "check": "biome check ."
+    "check": "biome check .",
+    "export:index": "astro build && node scripts/export-page.mjs index"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.3",
