@@ -11,6 +11,12 @@ export default defineConfig({
     site: 'https://example.com',
     integrations: [mdx(), sitemap(), react()],
     vite: {
+        build: {
+            cssCodeSplit: false,
+        },
+        css: {
+            devSourcemap: true,
+        },
         optimizeDeps: {
             include: [
                 'react',

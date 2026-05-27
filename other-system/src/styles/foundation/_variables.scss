@@ -1,4 +1,17 @@
 :root {
+  --color-accent: #aa3bff;
+
+  /* メインの本文、タイトルなど（最もコントラストが高い） */
+  --color-text-default: #1a1a1a;   /* または --color-text-primary */
+
+  /* 補足説明、投稿日時、ラベルなど（やや薄い） */
+  --color-text-muted: #65676b;     /* または --color-text-secondary */
+
+  /* プレースホルダー、無効化されたテキストなど（さらに薄い） */
+  --color-text-disabled: #9a9a9a;  /* または --color-text-tertiary */
+
+  --color-text-link: var(--color-accent);
+
   --text: #6b6375;
   --text-h: #08060d;
   --bg: #fff;
@@ -14,6 +27,8 @@
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
+
+  --spase: 4px;
 }
 
 @media (prefers-color-scheme: dark) {

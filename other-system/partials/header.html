@@ -12,22 +12,26 @@
   <!-- Reset CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kiso.css@latest/kiso.css">
 
+  <!-- Astro build assets -->
+  <link rel="stylesheet" href="/_astro/style.css">
+  <script type="module" src="/_astro/index.js"></script>
+  <script type="module" src="/_astro/client.js"></script>
+  <script type="module" src="/_astro/BlogSearch.js"></script>
+
   <!-- Primary Meta Tags -->
   <title>Astro Blog</title>
 </head>
 <body>
 <div class="l-site-container">
 <header class="l-site-header">
-  <div class="l-site-header__inner">
-    <hgroup class="l-site-header__header">
-      <h1 class="l-site-header__title">Other System</h1>
-      <p class="l-site-header__description">Astro をフロントエンドビルダーとして使用できるか検証するためのシステム</p>
-    </hgroup>
+  <hgroup class="l-site-header__header">
+    <h1 class="l-site-header__title">Other System</h1>
+    <p class="l-site-header__description">Astro をフロントエンドビルダーとして使用できるか検証するためのシステム</p>
+  </hgroup>
 
-    <nav class="l-site-header__nav">
-      <a class="l-site-header__link" href="/">Home</a>
-      <a class="l-site-header__link" href="/about/">About</a>
-    </nav>
-  </div>
+  <nav class="l-site-header__nav">
+    <a class="l-site-header__link" href="/">Home</a>
+    <a class="l-site-header__link" href="/about/">About</a>
+  </nav>
 </header>
 <main class="l-site-main">

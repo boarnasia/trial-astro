@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:partial": "PUBLIC_BUILD_TARGET=partial astro build",
     "preview": "astro preview",
     "astro": "astro",
     "storybook": "storybook dev -p 6006",
