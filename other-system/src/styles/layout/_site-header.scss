@@ -1,5 +1,6 @@
 .l-site-header {
     grid-area: header;
+    anchor-name: --page-header;
     display: flex;
     flex-direction: row;
     align-items: center;

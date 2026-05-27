@@ -21,7 +21,11 @@ const isPartial = import.meta.env.PUBLIC_BUILD_TARGET === 'partial';
 	isPartial ? (
 		<html>
 			<head></head>
-			<body><slot /></body>
+			<body>
+				<slot name="first-element-of-body" />
+				<slot />
+				<slot name="last-element-of-body" />
+			</body>
 		</html>
 	) : (
 		<html lang="ja">
